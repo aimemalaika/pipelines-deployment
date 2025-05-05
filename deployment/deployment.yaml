@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: budget-app-deployment
+  namespace: budge-app-with-production
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: budget-app
+  template:
+    metadata:
+      labels:
+        app: budget-app
+    spec:
+      containers:
+        - name: budget-app
+          image: image-registry.openshift-image-registry.svc:5000/budge-app-with-production/budget-app:latest
+          ports:
+            - containerPort: 8080

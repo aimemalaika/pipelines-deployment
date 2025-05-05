@@ -1,0 +1,13 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: budget-app-route
+  namespace: budge-app-with-production
+spec:
+  to:
+    kind: Service
+    name: budget-app-service
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
