@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: budget-app-service
-  namespace: budge-app-with-production
+  name: budget-app-frontend-service
+  namespace: budget-app-production
 spec:
   selector:
-    app: budget-app
+    app:  budget-app-frontend
   ports:
     - protocol: TCP
       port: 8080

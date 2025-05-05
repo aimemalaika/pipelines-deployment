@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  name: run-deployment-pipeline
+  name: run-deployment-pipeline-budget-app-frontend
 spec:
   pipelineRef:
     name: deployment-pipeline
@@ -11,7 +11,7 @@ spec:
     - name: branch
       value: main
     - name: image-name
-      value: image-registry.openshift-image-registry.svc:5000/budge-app-with-production/budget-app-frontend:latest
+      value: image-registry.openshift-image-registry.svc:5000/budget-app-production/budget-app-frontend:latest
   workspaces:
     - name: shared-workspace
       persistentVolumeClaim:

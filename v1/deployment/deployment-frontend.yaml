@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: budget-app-deployment
-  namespace: budge-app-with-production
+  name: budget-app-frontend-deployment
+  namespace: budget-app-production
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: budget-app
+      app:  budget-app-frontend
   template:
     metadata:
       labels:
-        app: budget-app
+        app:  budget-app-frontend
     spec:
       containers:
-        - name: budget-app
-          image: image-registry.openshift-image-registry.svc:5000/budge-app-with-production/budget-app-frontend:latest
+        - name:  budget-app-frontend
+          image: image-registry.openshift-image-registry.svc:5000/budget-app-production/budget-app-frontend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
