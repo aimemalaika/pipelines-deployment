@@ -1,15 +1,18 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  name: deployment-pipeline-run
+  name: run-deployment-pipeline
 spec:
   pipelineRef:
     name: deployment-pipeline
   params:
     - name: repo-url
-      value: "https://github.com/aimemalaika/budget-app-frontend"
+      value: https://github.com/aimemalaika/budget-app-frontend
     - name: branch
-      value: "develop"
+      value: develop
+    - name: image-name
+      value: image-registry.openshift-image-registry.svc:5000/budge-app-with-production/budget-app:latest
   workspaces:
     - name: shared-workspace
-      emptyDir: {}
+      persistentVolumeClaim:
+        claimName: deployment-shared-pvc
