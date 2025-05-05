@@ -18,3 +18,8 @@ spec:
           image: image-registry.openshift-image-registry.svc:5000/budge-app-with-production/budget-app:latest
           ports:
             - containerPort: 8080
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: NEXT_PUBLIC_API_BASE_URL
+              value: https://api.example.com
