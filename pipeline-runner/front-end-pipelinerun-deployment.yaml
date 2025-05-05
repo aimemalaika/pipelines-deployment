@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: deployment-pipeline-run
+spec:
+  pipelineRef:
+    name: deployment-pipeline
+  params:
+    - name: repo-url
+      value: "https://github.com/aimemalaika/budget-app-frontend"
+    - name: branch
+      value: "develop"
+  workspaces:
+    - name: shared-workspace
+      emptyDir: {}

@@ -1,0 +1,27 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: deployment-pipeline
+spec:
+  params:
+    - name: repo-url
+      type: string
+      description: The URL of the Git repository
+    - name: branch
+      type: string
+      description: The branch to checkout
+      default: "main"
+  workspaces:
+    - name: shared-workspace
+  tasks:
+    - name: clone-repo
+      taskRef:
+        name: git-clone
+      params:
+        - name: url
+          value: "$(params.repo-url)"
+        - name: revision
+          value: "$(params.branch)"
+      workspaces:
+        - name: output
+          workspace: shared-workspace
