@@ -9,9 +9,9 @@ spec:
     - name: repo-url
       value: https://github.com/aimemalaika/budget-app-frontend
     - name: branch
-      value: develop
+      value: main
     - name: image-name
-      value: image-registry.openshift-image-registry.svc:5000/budge-app-with-production/budget-app-frontend:$(context.pipelineRun.uid)
+      value: image-registry.openshift-image-registry.svc:5000/budge-app-with-production/budget-app-frontend:latest
   workspaces:
     - name: shared-workspace
       persistentVolumeClaim:
