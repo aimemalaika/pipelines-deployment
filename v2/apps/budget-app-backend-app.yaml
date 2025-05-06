@@ -4,6 +4,7 @@ metadata:
   name: budget-app-backend-gitops
   namespace: openshift-gitops  # Make sure this is the namespace where OpenShift GitOps is installed
 spec:
+  project: budget-app-gitops-setup
   destination:
     name: ''
     namespace: budget-app-gitops-setup  # The namespace where your app will be deployed
@@ -16,5 +17,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
