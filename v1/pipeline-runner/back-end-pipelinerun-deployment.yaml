@@ -15,4 +15,5 @@ spec:
   workspaces:
     - name: shared-workspace
       persistentVolumeClaim:
-        claimName: deployment-shared-pvc
+        claimName: deployment-shared-pvc  # Same PVC for both pipelines
+      subPath: budget-app-backend  # Mount the backend pipeline at a specific path
