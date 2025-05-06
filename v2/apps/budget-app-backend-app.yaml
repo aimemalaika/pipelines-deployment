@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: budget-app-backend-gitops
+  namespace: openshift-gitops  # Make sure this is the namespace where OpenShift GitOps is installed
+spec:
+  destination:
+    name: ''
+    namespace: budget-app-gitops-setup  # The namespace where your app will be deployed
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/aimemalaika/pipelines-deployment  # Replace with your GitOps repo URL
+    targetRevision: HEAD
+    path: v2/apps/budget-app-backend  # Path to the app manifests
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
