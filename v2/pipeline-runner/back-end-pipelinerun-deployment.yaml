@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: run-deployment-pipeline-budget-app-backend
+spec:
+  pipelineRef:
+    name: deployment-pipeline
+  params:
+    - name: repo-url
+      value: https://github.com/aimemalaika/budget-app-backend
+    - name: branch
+      value: main
+    - name: image-name
+      value: image-registry.openshift-image-registry.svc:5000/budget-app-production/budget-app-backend:latest
+  workspaces:
+    - name: shared-workspace
+      persistentVolumeClaim:
+        claimName: deployment-shared-pvc
+      subPath: budget-app-backend
+    - name: basic-auth
+      secret:
+        secretName: git-basic-auth

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: budget-app-frontend-deployment
+  namespace: budget-app-production
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app:  budget-app-frontend
+  template:
+    metadata:
+      labels:
+        app:  budget-app-frontend
+    spec:
+      containers:
+        - name:  budget-app-frontend
+          image: image-registry.openshift-image-registry.svc:5000/budget-app-production/budget-app-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: NEXT_PUBLIC_API_BASE_URL
+              value: https://budget-app-backend-route-budget-app-production.apps-crc.testing
