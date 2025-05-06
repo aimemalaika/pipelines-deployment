@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: budget-app-backend-deployment
-  namespace: budget-app-production
+  name: budget-app-backend-deployment-gitops
+  namespace: budget-app-gitops-setup
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app:  budget-app-backend
+      app:  budget-app-backend-gitops
   template:
     metadata:
       labels:
-        app:  budget-app-backend
+        app:  budget-app-backend-gitops
     spec:
       containers:
-        - name:  budget-app-backend
-          image: image-registry.openshift-image-registry.svc:5000/budget-app-production/budget-app-backend:latest
+        - name:  budget-app-backend-gitops
+          image: image-registry.openshift-image-registry.svc:5000/budget-app-gitops-setup/budget-app-backend-gitops:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
