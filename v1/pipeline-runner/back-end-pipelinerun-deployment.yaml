@@ -15,5 +15,8 @@ spec:
   workspaces:
     - name: shared-workspace
       persistentVolumeClaim:
-        claimName: deployment-shared-pvc  # Same PVC for both pipelines
-      subPath: budget-app-backend  # Mount the backend pipeline at a specific path
+        claimName: deployment-shared-pvc
+      subPath: budget-app-backend
+    - name: basic-auth
+      secret:
+        secretName: git-basic-auth

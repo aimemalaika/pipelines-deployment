@@ -16,6 +16,7 @@ spec:
       description: Image name to build and push
   workspaces:
     - name: shared-workspace
+    - name: basic-auth
   tasks:
     - name: clone-repo
       taskRef:
@@ -28,6 +29,9 @@ spec:
       workspaces:
         - name: output
           workspace: shared-workspace
+        - name: basic-auth
+          workspace: basic-auth
+          
 
     - name: build-image
       runAfter: ["clone-repo"]
